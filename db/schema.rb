@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191122140657) do
+ActiveRecord::Schema.define(version: 20191123143627) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20191122140657) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "in_reply_to"
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
@@ -55,7 +56,9 @@ ActiveRecord::Schema.define(version: 20191122140657) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.string "unique_name", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["unique_name"], name: "index_users_on_unique_name", unique: true
   end
 
 end

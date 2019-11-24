@@ -62,4 +62,17 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     log_in_as(@user, remember_me: '0')
     assert_empty cookies['remember_token']
   end
+  
+  test "valid signup information" do
+  get signup_path
+  assert_difference 'User.count', 1 do
+    post users_path, params: { user: { name: "Example User",
+                                       email: "user@example.com",
+                                       password: "password",
+                                       password_confirmation: "password",
+                                       unique_name: "example_user"         # ←ここ。
+    } }
+  end
+  follow_redirect!
+end
 end

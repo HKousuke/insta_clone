@@ -37,7 +37,6 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
   User.paginate(page:1).each do |user|
   assert_select 'a[href=?]', user_path(user), text:user.name
   end
-  assert_select 'title', "All users | Ruby on Rails Tutorial Sample App"
 
   # User search
   get users_path, params: {q: {name_cont: "a"}}
