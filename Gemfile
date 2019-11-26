@@ -6,6 +6,10 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails',        '5.1.6'
+gem 'bootstrap-social-rails'
+gem 'font-awesome-rails'
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'carrierwave',  '1.3'
 gem 'ransack', '1.8.4'
 gem 'mini_magick'

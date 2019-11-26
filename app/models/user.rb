@@ -13,13 +13,11 @@ class User < ApplicationRecord
                         length: { in: 5..15 },                       # 長さ5～15文字であること
                         format: { with: VALID_UNIQUE_NAME_REGEX },   # 一意ユーザ名の正規表現にマッチすること
                         uniqueness: { case_sensitive: false } 
-  validates :name,  presence: true, length: { maximum: 50 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 255 },
-                    format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
-  has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :username, presence: true, unless: :uid? 
+  validates :email, presence: true, unless: :uid?
+  has_secure_password validations: false
+  validates :password, presence: true, unless: :uid?
+    
 
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
@@ -89,6 +87,22 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+  
+  def self.find_or_create_from_auth(auth)
+  provider = auth[:provider]
+  uid = auth[:uid]
+  name = auth[:info][:name]
+  image = auth[:info][:image]
+  #必要に応じて情報追加してください
+
+  #ユーザはSNSで登録情報を変更するかもしれので、毎回データベースの情報も更新する
+  self.find_or_create_by(provider: provider, uid: uid) do |user|
+    user.username = name
+    user.image_path = image
+    end
+  end
+  
+  
   
   private
 
