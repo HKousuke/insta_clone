@@ -1,25 +1,23 @@
-# README
+提出が遅れてしまい大変申し訳ございません。
+下記、レポートの記述と共に未実装機能の記載を行います。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+未実装機能
+・通知機能
+・プロフィール機能
+・写真個別ページ
 
-Things you may want to cover:
+レポート
 
-* Ruby version
+苦労した点
+・リバースエンジニアリングができなかった為、リポジトリを複数個作り直しした。
+・ググり方が未熟な為、デバックに時間が掛かりすぎた。
+・gemを理解しきれなかった。
 
-* System dependencies
+学んだ点
+・Railsの理解度があまりにも低かった事。
+・機能の細分化が上手くできていない事。
+・MVCの関係性の理解が甘い事。
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-＃insta_clone
+相談したい点
+・可能であればサブ課題の完成の為に、本課題をこなしながらサブ課題のユーザビリティ向上に努めさせて頂きたい。
+・数多くのコードを書かないと身に付かない時、効率よく理解度を上げる方法があれば御教示頂きたい。
